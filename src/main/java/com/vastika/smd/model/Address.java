@@ -10,51 +10,93 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_address")
+@Table(name = "address_info")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
-	@Column(name = "city_name")
-	private String cityName;
-	@Column(name = "country_name")
-	private String countryName;
+	private Long id;
+	private String street;
+	private String city;
+	@Column(name = "postal_code")
+	private int postalCode;
+	private String country;
+	private String state;
 
 	@OneToOne
-	private User user;
+	private College college;
 
-	public int getId() {
+	public Address() {
+	}
+
+	public Address(Long id, String street, String city, int postalCode, String country, String state) {
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.postalCode = postalCode;
+		this.country = country;
+		this.state = state;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getCityName() {
-		return cityName;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getCountryName() {
-		return countryName;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public User getUser() {
-		return user;
+	public int getPostalCode() {
+		return postalCode;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPostalCode(int postalCode) {
+		this.postalCode = postalCode;
 	}
 
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	@Override
+	public String toString() {
+		return "Address{" + "id=" + id + ", street='" + street + '\'' + ", city='" + city + '\'' + ", postalCode="
+				+ postalCode + ", country='" + country + '\'' + ", state='" + state + '\'' + '}';
+	}
 }
